@@ -1,0 +1,51 @@
+<div class="form-enter">
+    <mat-form-field class="example-full-width" style="width: 60%">
+        <input matInput placeholder="Add Todo task" name="name" #taskName>
+    </mat-form-field>
+    <button mat-mini-fab color="warn" (click)="addItem(taskName.value)">
+            <i class="material-icons">add</i>
+    </button>
+</div>
+<div class="container">
+    <div *ngIf="items.length > 0">
+        <mat-list class="items-list">
+            <mat-list-item *ngFor="let item of items" [class.completed]="item.completed">
+                <div *ngIf="item.id === editingId; else other_content">
+
+                    <mat-form-field style="width: 180%">
+                        <input matInput placeholder="Modify Todo task" name="editingName" [(ngModel)]="editingName" [required]="true" />
+                    </mat-form-field>
+                    <div class="wrapbutton">
+                        <button mat-mini-fab color="accent" (click)="turnOffItemEditing()">
+                            <mat-icon>highlight_off</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="primary" (click)="updateItem(item)">
+                                <mat-icon>save</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <ng-template #other_content>
+                    <mat-checkbox [checked]="check" (click)="toggleItemCompleted(item)"></mat-checkbox>
+                    <label><strong>Name:</strong> {{item.name}}</label>
+                    <span class="wrapbutton">
+                        <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnItemEditing(item)">
+                            <mat-icon>mode_edit</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="warn" (click)="deleteItem(item.id)">
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>
+                    </span>
+                </ng-template>
+
+            </mat-list-item>
+        </mat-list>
+        <br />
+        <hr>
+        <br />
+        <div>
+            <strong>{{items.length}}</strong> {{items.length == 1 ? 'thing' : 'things'}} on the list...
+            <span *ngIf="unfinished" class="unfinished"><strong>{{unfinished}}</strong> {{unfinished == 1 ? 'thing' : 'things'}} unfinished</span>
+            <span *ngIf="finished" class="finished"><strong>{{finished}}</strong> {{finished == 1 ? 'thing' : 'things'}} finished</span>
+        </div>
+    </div>
+</div>

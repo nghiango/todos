@@ -1,0 +1,34 @@
+label {
+    padding-left: 50px;
+    padding-right: 50px
+}
+
+.container {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.form-enter {
+    margin-top: 20px;
+    text-align: center
+}
+
+.completed label {
+    transition: color 0.3s ease-out;
+    text-decoration: line-through;
+    color: grey;
+}
+
+.finished {
+    padding-left: 30%;
+}
+
+.unfinished {
+    padding-left: 30%;
+}
+
+.wrapbutton {
+    position: absolute;
+    right: 640px;
+    top: 0px;
+}
