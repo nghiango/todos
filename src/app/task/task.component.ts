@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../domain/task';
-import { TaskService } from './task.service';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-task',
@@ -9,6 +9,7 @@ import { TaskService } from './task.service';
 })
 export class TaskComponent implements OnInit {
   tasks:Task[] = []
+  task:Task
   finished = 0
   unfinished = 0
 
@@ -20,14 +21,13 @@ export class TaskComponent implements OnInit {
     this.initTasks()
   }
   initTasks(){
-    this.tasks = this.taskService.findAll()
+    this.taskService.findAll().subscribe(tasks => this.tasks = tasks)
   }
   addTask(name:string) {
     if (name.trim() == "") {
       alert("Please enter your name")
     } else {
-      let task = this.taskService.addTask(name)
-      this.tasks.push(task)
+      this.taskService.addTask(name).subscribe(task => this.tasks.push(task))
       this.unfinished++
     }
   }
@@ -70,9 +70,7 @@ export class TaskComponent implements OnInit {
   }
 
   deleteTask(localTask: Task) {
-    if(localTask.completed) this.finished-- 
-    else this.unfinished--
-    this.taskService.deleteTodoById(localTask.id)
+    this.taskService.deleteTodoById(localTask.id).subscribe()
     this.tasks = this.tasks
       .filter(item => item.id !== localTask.id)
   }

@@ -11,7 +11,8 @@ import { MatInputModule, MatFormFieldModule, MatButtonModule,
 import { ListOfListsComponent } from './list-of-lists/list-of-lists.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TaskComponent } from './task/task.component';
-import { TaskService } from './task/task.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskService } from './service/task.service';
 ;
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TaskService } from './task/task.service';
     MatCheckboxModule,
     MatToolbarModule,
     MatTabsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

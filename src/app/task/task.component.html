@@ -2,15 +2,15 @@
     <mat-form-field class="example-full-width" style="width: 60%">
         <input matInput placeholder="Add Todo task" name="name" #taskName>
     </mat-form-field>
-    <button mat-mini-fab color="warn" (click)="addTask(taskName.value)">
+    <button mat-mini-fab color="warn" (click)="addTask(taskName.value); taskName.value = ''">
           <i class="material-icons">add</i>
   </button>
 </div>
 <div class="container">
-    <div *ngIf="items.length > 0">
-        <mat-list class="items-list">
-            <mat-list-item *ngFor="let item of items" [class.completed]="item.completed">
-                <div *ngIf="item.id === editingId; else other_content">
+    <div *ngIf="tasks.length > 0">
+        <mat-list class="item-list">
+            <mat-list-item *ngFor="let task of tasks" [class.completed]="task.completed">
+                <div *ngIf="task.id === editingId; else other_content">
 
                     <mat-form-field style="width: 180%">
                         <input matInput placeholder="Modify Todo task" name="editingName" [(ngModel)]="editingName" [required]="true" />
@@ -26,9 +26,9 @@
                 </div>
                 <ng-template #other_content>
                     <mat-checkbox [checked]="check" (click)="toggleTaskCompleted(task)"></mat-checkbox>
-                    <label><strong>Name:</strong> {{item.name}}</label>
+                    <label><strong>Name:</strong> {{task.name}}</label>
                     <span class="wrapbutton">
-                      <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnTaskEditing(task)">
+                      <button mat-mini-fab color="primary" *ngIf="!task.completed" (click)="turnOnTaskEditing(task)">
                           <mat-icon>mode_edit</mat-icon>
                       </button>
                       <button mat-mini-fab color="warn" (click)="deleteTask(task)">
@@ -43,7 +43,7 @@
         <hr>
         <br />
         <div>
-            <strong>{{items.length}}</strong> {{items.length == 1 ? 'thing' : 'things'}} on the list...
+            <strong>{{tasks.length}}</strong> {{tasks.length == 1 ? 'thing' : 'things'}} on the list...
             <span *ngIf="unfinished" class="unfinished"><strong>{{unfinished}}</strong> {{unfinished == 1 ? 'thing' : 'things'}} unfinished</span>
             <span *ngIf="finished" class="finished"><strong>{{finished}}</strong> {{finished == 1 ? 'thing' : 'things'}} finished</span>
         </div>
