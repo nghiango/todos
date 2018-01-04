@@ -5,28 +5,18 @@ import { Item } from '../model/item';
 export class ItemService {
 
   lastId: number = 0
-  items: Item[] = []
+  items: Item[] = [];
 
   constructor() { }
 
   findAll(): Item[] {
-    return this.items
+    return Object.assign([], this.items);
   }
 
   findById(id: number): Item {
     return this.items
       .filter(item => item.id === id)
       .pop()
-  }
-
-  findByCompleted(completed: boolean):number{
-    var finished = 0
-    for (let item of this.items) { 
-      if(item.completed == completed){
-        finished++
-      }
-    }
-    return finished
   }
 
   addItem(name: string):Item{

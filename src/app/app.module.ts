@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { ItemService } from '../app/todo/components/item/service/item.service'
 import { AppComponent } from './app.component';
-import { ListComponent } from './todo/components/list/list.component';
+import { ListComponent } from './todo/components/list/component/list.component';
 import { ItemComponent } from './todo/components/item/component/item.component';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
