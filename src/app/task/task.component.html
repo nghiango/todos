@@ -2,9 +2,9 @@
     <mat-form-field class="example-full-width" style="width: 60%">
         <input matInput placeholder="Add Todo task" name="name" #taskName>
     </mat-form-field>
-    <button mat-mini-fab color="warn" (click)="addItem(taskName.value)">
-            <i class="material-icons">add</i>
-    </button>
+    <button mat-mini-fab color="warn" (click)="addTask(taskName.value)">
+          <i class="material-icons">add</i>
+  </button>
 </div>
 <div class="container">
     <div *ngIf="items.length > 0">
@@ -16,25 +16,25 @@
                         <input matInput placeholder="Modify Todo task" name="editingName" [(ngModel)]="editingName" [required]="true" />
                     </mat-form-field>
                     <div class="wrapbutton">
-                        <button mat-mini-fab color="accent" (click)="turnOffItemEditing()">
-                            <mat-icon>highlight_off</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="primary" (click)="updateItem(item)">
-                                <mat-icon>save</mat-icon>
-                        </button>
+                        <button mat-mini-fab color="accent" (click)="turnOffTaskEditing()">
+                          <mat-icon>highlight_off</mat-icon>
+                      </button>
+                        <button mat-mini-fab color="primary" (click)="updateTask(task)">
+                              <mat-icon>save</mat-icon>
+                      </button>
                     </div>
                 </div>
                 <ng-template #other_content>
-                    <mat-checkbox [checked]="check" (click)="toggleItemCompleted(item)"></mat-checkbox>
+                    <mat-checkbox [checked]="check" (click)="toggleTaskCompleted(task)"></mat-checkbox>
                     <label><strong>Name:</strong> {{item.name}}</label>
                     <span class="wrapbutton">
-                        <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnItemEditing(item)">
-                            <mat-icon>mode_edit</mat-icon>
-                        </button>
-                        <button mat-mini-fab color="warn" (click)="deleteItem(item)">
-                            <mat-icon>delete_forever</mat-icon>
-                        </button>
-                    </span>
+                      <button mat-mini-fab color="primary" *ngIf="!item.completed" (click)="turnOnTaskEditing(task)">
+                          <mat-icon>mode_edit</mat-icon>
+                      </button>
+                      <button mat-mini-fab color="warn" (click)="deleteTask(task)">
+                          <mat-icon>delete_forever</mat-icon>
+                      </button>
+                  </span>
                 </ng-template>
 
             </mat-list-item>

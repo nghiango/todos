@@ -1,21 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ItemService } from '../app/todo/components/item/service/item.service'
 import { AppComponent } from './app.component';
-import { ListComponent } from './todo/components/list/component/list.component';
-import { ItemComponent } from './todo/components/item/component/item.component';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatListModule, MatCheckboxModule, MatToolbarModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatButtonModule,
+   MatIconModule, MatListModule, MatCheckboxModule, MatToolbarModule, MatTabsModule } from '@angular/material';
+import { ListOfListsComponent } from './list-of-lists/list-of-lists.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TaskComponent } from './task/task.component';
+import { TaskService } from './task/task.service';
+;
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListComponent,
-    ItemComponent
+    ListOfListsComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +32,11 @@ import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, Mat
     MatIconModule,
     MatListModule,
     MatCheckboxModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    AppRoutingModule
   ],
-  providers: [ItemService],
+  providers: [TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
